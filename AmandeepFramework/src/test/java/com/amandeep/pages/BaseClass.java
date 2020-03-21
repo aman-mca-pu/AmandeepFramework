@@ -57,7 +57,6 @@ public class BaseClass {
 		}
 
 		report.flush();
-
 	}
 
 }
