@@ -8,7 +8,7 @@ import org.testng.Assert;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 
-public class RestAssuredPractice1 {
+public class RahulShettyMapAPI1 {
 
 	public static void main(String[] args) {
 

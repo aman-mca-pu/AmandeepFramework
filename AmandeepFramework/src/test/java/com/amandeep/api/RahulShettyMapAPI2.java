@@ -1,10 +1,12 @@
 package com.amandeep.api;
 
+import org.testng.Assert;
+
 import com.amandeep.utilities.Helper;
 
 import io.restassured.path.json.JsonPath;
 
-public class RestAssuredPractice2 {
+public class RahulShettyMapAPI2 {
 
 	public static void main(String[] args) {
 		String response = "{\r\n" + "\r\n" + "\"dashboard\": {\r\n" + "\r\n" + "\"purchaseAmount\": 910,\r\n" + "\r\n"
@@ -42,9 +44,19 @@ public class RestAssuredPractice2 {
 				break;
 			}
 		}
-		
+
 		// Verify if Sum of all Course prices matches with Purchase Amount
-		
+		int expectedSum = 0;
+		for (int i = 0; i < numberOfCourses; i++) {
+			int coursePrice = js.getInt("courses[" + i + "].price");
+			int courseCopies = js.getInt("courses[" + i + "].copies");
+			int total = courseCopies * coursePrice;
+			expectedSum = expectedSum + total;
+		}
+		System.out.println("Expected sum = " + expectedSum);
+		int actualSum = js.getInt("dashboard.purchaseAmount");
+		System.out.println("Actual sum = " + actualSum);
+		Assert.assertEquals(actualSum, expectedSum);
 
 	}
 
