@@ -37,7 +37,7 @@ public class Helper {
 	}
 
 	// Parse string to json
-	public static JsonPath stringToJson(String response) {
+	public static JsonPath rawToJson(String response) {
 		return new JsonPath(response);
 	}
 

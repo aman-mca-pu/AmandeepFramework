@@ -18,7 +18,7 @@ public class RahulShettyMapAPI2 {
 				+ "\r\n" + "\"copies\": 10\r\n" + "\r\n" + "}\r\n" + "\r\n" + "]\r\n" + "\r\n" + "}";
 
 		// Print number of courses
-		JsonPath js = Helper.stringToJson(response);
+		JsonPath js = Helper.rawToJson(response);
 		int numberOfCourses = js.getInt("courses.size()");
 		System.out.println("Number of courses = " + numberOfCourses);
 
