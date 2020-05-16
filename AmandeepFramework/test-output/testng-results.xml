@@ -2,39 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="26079" started-at="2020-05-07T09:13:29Z" finished-at="2020-05-07T09:13:56Z">
+  <suite name="Default suite" duration-ms="1753" started-at="2020-05-14T09:52:37Z" finished-at="2020-05-14T09:52:38Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="26079" started-at="2020-05-07T09:13:29Z" finished-at="2020-05-07T09:13:56Z">
-      <class name="com.amandeep.testcases.LoginTestCRM">
-        <test-method status="PASS" signature="setUpSuite()[pri:0, instance:com.amandeep.testcases.LoginTestCRM@66a3ffec]" name="setUpSuite" is-config="true" duration-ms="727" started-at="2020-05-07T09:13:29Z" finished-at="2020-05-07T09:13:29Z">
+    <test name="Default test" duration-ms="1753" started-at="2020-05-14T09:52:37Z" finished-at="2020-05-14T09:52:38Z">
+      <class name="com.amandeep.api.LibraryAPIFromStaticJson">
+        <test-method status="PASS" signature="addBook()[pri:0, instance:com.amandeep.api.LibraryAPIFromStaticJson@7ff95560]" name="addBook" duration-ms="1735" started-at="2020-05-14T09:52:37Z" finished-at="2020-05-14T09:52:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpSuite -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.amandeep.testcases.LoginTestCRM@66a3ffec]" name="setUp" is-config="true" duration-ms="20761" started-at="2020-05-07T09:13:29Z" finished-at="2020-05-07T09:13:50Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="loginApp()[pri:0, instance:com.amandeep.testcases.LoginTestCRM@66a3ffec]" name="loginApp" duration-ms="3897" started-at="2020-05-07T09:13:50Z" finished-at="2020-05-07T09:13:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- loginApp -->
-        <test-method status="PASS" signature="tearDownAfterMethod(org.testng.ITestResult)[pri:0, instance:com.amandeep.testcases.LoginTestCRM@66a3ffec]" name="tearDownAfterMethod" is-config="true" duration-ms="738" started-at="2020-05-07T09:13:54Z" finished-at="2020-05-07T09:13:55Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=loginApp status=SUCCESS method=LoginTestCRM.loginApp()[pri:0, instance:com.amandeep.testcases.LoginTestCRM@66a3ffec] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDownAfterMethod -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.amandeep.testcases.LoginTestCRM@66a3ffec]" name="tearDown" is-config="true" duration-ms="658" started-at="2020-05-07T09:13:55Z" finished-at="2020-05-07T09:13:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- com.amandeep.testcases.LoginTestCRM -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- addBook -->
+      </class> <!-- com.amandeep.api.LibraryAPIFromStaticJson -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>
