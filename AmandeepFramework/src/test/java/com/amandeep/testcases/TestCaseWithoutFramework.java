@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
 public class TestCaseWithoutFramework {
@@ -23,6 +22,7 @@ public class TestCaseWithoutFramework {
 		driver.findElement(By.name("password")).sendKeys("Abcd@123456");
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
 		driver.quit();
+		
 	}
 
 }
