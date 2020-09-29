@@ -74,8 +74,14 @@
 			<artifactId>xml-path</artifactId>
 			<version>4.3.0</version>
 		</dependency>
-		
+
 		<!-- Amandeep -->
 
 	</dependencies>
+
+	<!-- Force Eclipse and Maven to use a Java 8 JDK compiler -->
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
 </project>
