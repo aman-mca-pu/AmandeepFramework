@@ -19,6 +19,8 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
+import org.testng.annotations.Parameters;
+
 public class BaseClass {
 
 	protected WebDriver driver;
@@ -31,14 +33,17 @@ public class BaseClass {
 	public void setUpSuite() {
 		excel = new ExcelDataProvider();
 		config = new ConfigDataProvider();
-		ExtentHtmlReporter extent = new ExtentHtmlReporter(new File(System.getProperty("user.dir") + "/Reports/FreeCRM" + Helper.getCurrentDateTime() + ".html"));
+		ExtentHtmlReporter extent = new ExtentHtmlReporter(
+				new File(System.getProperty("user.dir") + "/Reports/FreeCRM" + Helper.getCurrentDateTime() + ".html"));
 		report = new ExtentReports();
 		report.attachReporter(extent);
 	}
 
+	@Parameters("browser") // "browser" coming from POM surefire
 	@BeforeClass
-	public void setUp() {
-		driver = BrowserFactory.startApplication(driver, config.getBrowser(), config.getStagingUrl());
+	public void setUp(String browser) {
+//		driver = BrowserFactory.startApplication(driver, config.getBrowser(), config.getStagingUrl());
+		driver = BrowserFactory.startApplication(driver, browser, config.getStagingUrl());
 	}
 
 	@AfterClass
@@ -49,11 +54,14 @@ public class BaseClass {
 	@AfterMethod
 	public void tearDownAfterMethod(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			logger.fail("Test failed", MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
+			logger.fail("Test failed",
+					MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
 		} else if (result.getStatus() == ITestResult.SUCCESS) {
-			logger.pass("Test Passed", MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
+			logger.pass("Test Passed",
+					MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
 		} else if (result.getStatus() == ITestResult.SKIP) {
-			logger.skip("Test Passed", MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
+			logger.skip("Test Passed",
+					MediaEntityBuilder.createScreenCaptureFromPath(Helper.captureScreenshot(driver)).build());
 		}
 
 		report.flush();
