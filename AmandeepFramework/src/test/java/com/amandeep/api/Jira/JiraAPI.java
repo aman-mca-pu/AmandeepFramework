@@ -19,15 +19,14 @@ public class JiraAPI {
 		SessionFilter session = new SessionFilter();
 
 		// Login
-		given().relaxedHTTPSValidation().header("Content-Type", "application/json").body(Payload.loginToJira(
-				"amandeep.singh@centricconsulting.com", "amandeep")).filter(session)
-				.when().post("/rest/auth/1/session").then().assertThat().statusCode(200);
+		given().relaxedHTTPSValidation().header("Content-Type", "application/json")
+				.body(Payload.loginToJira("amandeep.singh@centricconsulting.com", "amandeep")).filter(session).when()
+				.post("/rest/auth/1/session").then().assertThat().statusCode(200);
 		System.out.println("Login successful");
 
 		// Create a bug
-		String createdBugResponse = given().header("Content-Type", "application/json")
-				.body(Payload.createBug()).filter(session).when().post(
-						"/rest/api/2/issue").then().assertThat().statusCode(201).extract()
+		String createdBugResponse = given().header("Content-Type", "application/json").body(Payload.createBug())
+				.filter(session).when().post("/rest/api/2/issue").then().assertThat().statusCode(201).extract()
 				.response().asString();
 
 		JsonPath js = new JsonPath(createdBugResponse);
@@ -37,10 +36,10 @@ public class JiraAPI {
 		// Add comment
 		String comment = "Comment to test";
 
-		String addCommentResponse = given().pathParam("issueIdOrKey", issueKey).header(
-				"Content-Type", "application/json").body(Payload.addComment(comment))
-				.filter(session).when().post("/rest/api/2/issue/{issueIdOrKey}/comment")
-				.then().assertThat().statusCode(201).extract().response().asString();
+		String addCommentResponse = given().pathParam("issueIdOrKey", issueKey)
+				.header("Content-Type", "application/json").body(Payload.addComment(comment)).filter(session).when()
+				.post("/rest/api/2/issue/{issueIdOrKey}/comment").then().assertThat().statusCode(201).extract()
+				.response().asString();
 
 		JsonPath js1 = new JsonPath(addCommentResponse);
 		String commentId = js1.get("id");
@@ -48,18 +47,15 @@ public class JiraAPI {
 		System.out.println("Comment added successfully with ID = " + commentId);
 
 		// Add Attachement
-		given().header("X-Atlassian-Token", "no-check").header("Content-Type",
-				"multipart/form-data").filter(session).pathParam("issueIdOrKey", issueKey)
-				.multiPart("file", new File("pom.xml")).when().post(
-						"/rest/api/2/issue/{issueIdOrKey}/attachments").then()
-				.assertThat().statusCode(200);
+		given().header("X-Atlassian-Token", "no-check").header("Content-Type", "multipart/form-data").filter(session)
+				.pathParam("issueIdOrKey", issueKey).multiPart("file", new File("pom.xml")).when()
+				.post("/rest/api/2/issue/{issueIdOrKey}/attachments").then().assertThat().statusCode(200);
 		System.out.println("Attachment added successfully");
 
 		// Get issue
-		String getIssueResponse = given().pathParam("issueIdOrKey", issueKey).filter(
-				session).queryParam("fields", "comment").when().get(
-						"/rest/api/2/issue/{issueIdOrKey}").then().extract().response()
-				.asString();
+		String getIssueResponse = given().pathParam("issueIdOrKey", issueKey).filter(session)
+				.queryParam("fields", "comment").when().get("/rest/api/2/issue/{issueIdOrKey}").then().extract()
+				.response().asString();
 
 		// iterate over fields to see if above fetched comment id is present
 		JsonPath js2 = new JsonPath(getIssueResponse);
@@ -68,10 +64,8 @@ public class JiraAPI {
 		String actualComment = "";
 
 		for (int i = 0; i < numberOfComments; i++) {
-			if (js2.get("fields.comment.comments[" + i + "].id").toString()
-					.equalsIgnoreCase(commentId)) {
-				actualComment = js2.get("fields.comment.comments[" + i + "].body")
-						.toString();
+			if (js2.get("fields.comment.comments[" + i + "].id").toString().equalsIgnoreCase(commentId)) {
+				actualComment = js2.get("fields.comment.comments[" + i + "].body").toString();
 				break;
 			}
 		}
